@@ -48,7 +48,7 @@ window.onload = function() {
                 let title = options.i18n.resources[options.language]['Sent!'] || 'Sent!';
                 let msg = options.i18n.resources[options.language]['Your submission has been sent!'] || 'Your submission has been sent!';
                 let formio = document.getElementById('formio');
-                formio.innerHTML = `<div class="alert alert-success"><strong><span class="glyphicon glyphicon-ok-sign"></span> ${title}</strong> ${msg}</div>`;
+                formio.innerHTML = `<div class="alert alert-success alert-submitted col-sm-6 col-sm-offset-3"><strong><span class="glyphicon glyphicon-ok-sign"></span> ${title}</strong><br/>${msg}</div>`;
             });
         });
     }).catch(function(error) {
