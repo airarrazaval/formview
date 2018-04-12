@@ -42,6 +42,7 @@ window.onload = function() {
         }
     }).then(function(options) {
         Formio.createForm(document.getElementById('formio'), config.project.concat('/', config.formPath), options).then(function(form) {
+            document.getElementById('spinner').remove();
             form.language = options.language;
             form.on('submitDone', function(submission) {
                 let title = options.i18n.resources[options.language]['Sent!'] || 'Sent!';
