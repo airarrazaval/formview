@@ -27,7 +27,7 @@ window.onload = function() {
     let filter = '?limit=1000&select=data.label,data.' + config.translations.language;
     
     console.log('getting translations...');
-    Formio.request(translationsUrl + filter, 'get').next(function(items) {
+    Formio.request(translationsUrl + filter, 'get').then(function(items) {
         console.log('tarnslations received! total labels: ', items.length);
         let lang = config.translations.language;
         let i18n = {};
