@@ -25,6 +25,7 @@ img.form-loading {
 
 .alert-submitted {
     padding: 30px;
+    text-align: center;
 }
 
 .alert-submitted strong {
