@@ -33,8 +33,7 @@ window.onload = function() {
         for(let i = 0; i < items.length; i++) {
             let item = items[i];
             if (item.data.hasOwnProperty(lang)) {
-                console.log(item.data.label, item.data[lang]);
-                config.translations.i18n[lang][item.data.label] = item.data[lang];
+                i18n[lang][item.data.label] = item.data[lang];
             }
         }
         return {
