@@ -63,7 +63,7 @@ var app = new Vue({
     this.createTranslations().then((options) => {
       this.createForm().then((form) => {
         this.loading = false
-        form.language = options.language
+        form.language = this.options.language
       })
     })
   }
