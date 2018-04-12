@@ -23,7 +23,7 @@ function getFormConfig() {
 window.onload = function() {
     let config = getFormConfig();
     
-    let translationsUrl = config.project.concat('/', config.translations.path, 'submission');
+    let translationsUrl = config.project.concat('/', config.translations.path, '/submission');
     let filter = '?limit=1000&select=data.label,data.' + config.translations.language;
     
     console.log('getting translations...');
