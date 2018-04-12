@@ -34,7 +34,6 @@ var app = new Vue({
       let wrapper = document.createElement('div')
       let parent = element.parentElement
       let sibling = element.nextSibling
-      console.table({el: element})
       if (element && element.localName === 'table') {
         wrapper.className = 'table-responsive'
       }
