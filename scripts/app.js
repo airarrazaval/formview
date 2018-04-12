@@ -20,10 +20,6 @@ function getFormConfig() {
     }
 }
 
-function onFormSubmit(title = 'Sent!', message = 'Your submission has been sent!') {
-    
-}
-
 window.onload = function() {
     let config = getFormConfig();
     
