@@ -8,6 +8,20 @@ function getParameterByName(name, url) {
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
-let form = atob(getParameterByName('form'));
+function getFormConfig() {
+    let query = atob(getParameterByName('form'));
+    
+    return 
+}
 
-console.log(form);
+window.onload = function() {
+    let configString = atob(getParameterByName('form'));
+    let config = {
+        project: getParameterByName('project', configString) || 'https://examples.form.io',
+        formPath: getParameterByName('path', configString) || 'example',
+        lang: getParameterByName('lang') || 'en'
+    }
+    
+    
+    console.log(config);
+}
