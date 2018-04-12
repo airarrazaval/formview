@@ -30,6 +30,21 @@ var app = new Vue({
       }
       return decodeURIComponent(results[2].replace(/\+/g, " "))
     },
+    addResponsiveWrapper (element) {
+      let wrapper = document.createElement('div')
+      let parent = element.parentElement
+      let sibling = element.nextSibling
+      console.table({el: element})
+      if (element && element.localName === 'table') {
+        wrapper.className = 'table-responsive'
+      }
+      wrapper.appendChild(element)
+      if (sibling) {
+        parent.insertBefore(wrapper, sibling)
+      } else {
+        parent.appendChild(wrapper)
+      }
+    },
     createTranslations () {
       let filter = '?limit=1000&select=data.label,data.'.concat(this.options.language)
       let url = this.project.concat('/', this.translationsPath, '/submission')
@@ -64,6 +79,14 @@ var app = new Vue({
       this.createForm().then((form) => {
         this.loading = false
         form.language = this.options.language
+        let tables = document.getElementsByTagName('table')
+        for (let i =0; i < tables.length; i++) {
+          let table = tables[i]
+          console.log(table)
+          this.addResponsiveWrapper(table)
+
+        }
+          
       })
     })
   }
