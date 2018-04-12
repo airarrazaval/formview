@@ -21,6 +21,13 @@ function getFormConfig() {
 }
 
 window.onload = function() {
+    let header = document.getElementById('header');
+    let showHeader = parseInt(getParameterByName('header')) || 1;
+    
+    if (!showHeader) {
+        header.remove();
+    }
+    
     let config = getFormConfig();
     
     let translationsUrl = config.project.concat('/', config.translations.path, '/submission');
