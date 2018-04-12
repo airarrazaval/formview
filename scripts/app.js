@@ -47,9 +47,9 @@ window.onload = function() {
     }).then(function(options) {
         Formio.createForm(document.getElementById('formio'), config.project.concat('/', config.formPath), options).then(function(form) {
             form.language = options.language;
-            form.on('submitDone', (submission) => {
-                let title = options.i18n[options.language]['Sent!'] || 'Sent!';
-                let msg = options.i18n[options.language]['Your submission has been sent!'] || 'Your submission has been sent!';
+            form.on('submitDone', function(submission) {
+                let title = options.i18n.resources[options.language]['Sent!'] || 'Sent!';
+                let msg = options.i18n.resources[options.language]['Your submission has been sent!'] || 'Your submission has been sent!';
                 let formio = document.getElementById('formio');
                 formio.innerHTML = `<div class="alert alert-success"><strong><span class="glyphicon glyphicon-ok-sign"></span> ${title}</strong> ${msg}</div>`;
             });
