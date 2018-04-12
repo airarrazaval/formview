@@ -26,9 +26,10 @@ img.form-loading {
 .alert-submitted {
     padding: 30px;
     text-align: center;
+    font-size: 1.2em;
 }
 
 .alert-submitted strong {
     display: block;
-    margin-bottom: 20px;
+    font-size: 1.5em;
 }
