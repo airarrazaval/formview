@@ -22,3 +22,12 @@ img.form-loading {
     display: block;
     margin-top: 200px;
 }
+
+.alert-submitted {
+    padding: 30px;
+}
+
+.alert-submitted strong {
+    display: block;
+    margin-bottom: 20px;
+}
