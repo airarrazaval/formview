@@ -9,19 +9,49 @@ function getParameterByName(name, url) {
 }
 
 function getFormConfig() {
-    let query = atob(getParameterByName('form'));
-    
-    return 
+    let configString = atob(getParameterByName('form'));
+    return {
+        project: getParameterByName('project', configString) || 'https://examples.form.io',
+        formPath: getParameterByName('path', configString) || 'example',
+        translations: {
+            language: getParameterByName('lang') || 'en',
+            path: getParameterByName('i18n', configString) || 'translations'
+        }
+    }
 }
 
 window.onload = function() {
-    let configString = atob(getParameterByName('form'));
-    let config = {
-        project: getParameterByName('project', configString) || 'https://examples.form.io',
-        formPath: getParameterByName('path', configString) || 'example',
-        lang: getParameterByName('lang') || 'en'
-    }
+    let config = getFormConfig();
     
+    let translationsUrl = config.project.concat('/', config.translations.path, 'submission');
+    let filter = '?limit=1000&select=data.label,data.' + config.translations.language;
+    
+    console.log('getting translations...');
+    Formio.request(translationsUrl + filter, 'get').next(function(items) {
+        console.log('tarnslations received! total labels: ', items.length);
+        let lang = config.translations.language;
+        let i18n = {};
+        i18n[lang] = {}
+        for(let i = 0; i < items.length; i++) {
+            let item = items[i];
+            if (item.hasOwnProperty(lang)) {
+                config.translations.i18n[lang] = item[lang];
+            }
+        }
+        return {
+            language: lang,
+            i18n: i18n
+        }
+    }).then(function(options) {
+        console.log('getting form...');
+        Formio.createForm(document.getElementById('formio'), config.project.concat('/', config.formPath), options).then(function(form) {
+            console.log('form received!')
+            form.language = options.language;
+            console.log('form language set: ', options.language);
+        })
+    }).catch(function(error) {
+        console.log('form rendering error: ', error);
+    });
     
     console.log(config);
 }
