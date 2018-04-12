@@ -8,6 +8,6 @@ function getParameterByName(name, url) {
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
-let project = getParameterByName('project') || 'examples';
+let form = atob(getParameterByName('form'));
 
-console.log(project);
+console.log(form);
