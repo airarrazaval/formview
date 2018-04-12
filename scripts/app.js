@@ -42,6 +42,7 @@ window.onload = function() {
             i18n: i18n
         }
     }).then(function(options) {
+        console.log(options);
         Formio.createForm(document.getElementById('formio'), config.project.concat('/', config.formPath), options).then(function(form) {
             form.language = options.language;
         })
