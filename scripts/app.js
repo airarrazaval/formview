@@ -22,8 +22,8 @@ function getFormConfig() {
 
 window.onload = function() {
     let header = document.getElementById('header');
-    let showHeader = parseInt(getParameterByName('header')) || 1;
-    console.log('header', {e: header, show: showHeader});
+    let showHeader = parseInt(getParameterByName('header'));
+    
     if (!showHeader) {
         header.remove();
     }
