@@ -15,3 +15,10 @@ nav .fao-logo {
   display: block;
   width: 350px;
 }
+
+img.form-loading {
+    margin: auto;
+    width: 128px;
+    display: block;
+    margin-top: 200px;
+}
