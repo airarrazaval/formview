@@ -44,3 +44,13 @@ nav .fao-logo {
     text-align: center;
     padding: 20px;
 }
+
+.formio-component.has-error {
+  padding: 0;
+  border: none;
+  background-color: inherit;
+}
+
+.formio-component > .formio-errors {
+  display: none !important;
+}
