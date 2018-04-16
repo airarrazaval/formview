@@ -27,6 +27,13 @@
         </nav>
       <div class="container">
         <section class="form-wrapper">
+            <div class="language-bar">
+                <div class="btn-group" v-if="languages.length > 1">
+                    <button class="btn btn-default" @click="setLanguage(lang)" v-for="lang in languages" :key="lang">
+                        {{ getLanguageName(lang) }}
+                    </button>
+                </div>
+            </div>
             <div id="formio">
                 <div class="loading text-center" v-if="loading">
                     <i class="fas fa-spinner fa-spin"></i>

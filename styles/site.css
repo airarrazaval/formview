@@ -38,3 +38,9 @@ nav .fao-logo {
 #formio nav {
   text-align: center;
 }
+
+.form-wrapper .language-bar {
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+}
