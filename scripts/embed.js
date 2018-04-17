@@ -29,6 +29,7 @@ document.write(code);
 
 // Render form on load
 window.onload = function () {
+    /*
     window.getLanguageName = function(lang) {
         console.log(lang)
         switch (lang) {
@@ -41,6 +42,7 @@ window.onload = function () {
             default: return 'Unknown'
         }
     };
+    */
     // Create formio instance
     let el = document.getElementById(id);
     let formio = new Formio(form);
