@@ -1,4 +1,3 @@
-console.log('starting')
 var app = new Vue({
   el: '#app',
   data () {
@@ -13,6 +12,10 @@ var app = new Vue({
       options: {
         language: 'en',
         i18n: {}
+      },
+      messages: {
+        submissionSent: 'Your submission has been sent',
+        submissionError: 'An unknown error has occured.',
       }
     }
   },
@@ -61,6 +64,8 @@ var app = new Vue({
           }
           
         }
+        this.messages.submissionSent = this.options.i18n[this.options.language].submissionSent || this.messages.submissionSent
+        this.messages.submissionError = this.options.i18n[this.options.language].submissionError || this.messages.submissionError
       })
       return this.options
     },
@@ -102,13 +107,19 @@ var app = new Vue({
     this.showHeader = this.getParameterByName('header') ? parseInt(this.getParameterByName('header')) : true
     this.createTranslations().then((options) => {
       this.createForm().then((form) => {
+        form.on('submit', (submission) => {
+          let msg = document.createElement('div');
+          msg.className = 'alert alert-success text-center';
+          msg.innerHTML = this.messages.submissionSent;
+          let root = document.getElementById('formio');
+          formio.innerHTML = msg.outerHTML;
+        })
         this.loading = false
         this.form = form
         this.setLanguage(this.options.language)
         let tables = document.getElementsByTagName('table')
         for (let i =0; i < tables.length; i++) {
           let table = tables[i]
-          console.log(table)
           this.addResponsiveWrapper(table)
         }
           

@@ -54,3 +54,7 @@ nav .fao-logo {
 .formio-component > .formio-errors {
   display: none !important;
 }
+
+.formio-component-submit {
+  text-align: right;
+}
