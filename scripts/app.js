@@ -13,10 +13,7 @@ var app = new Vue({
         language: 'en',
         i18n: {}
       },
-      messages: {
-        submissionSent: 'Your submission has been sent',
-        submissionError: 'An unknown error has occured.',
-      }
+      submitMessage: 'Your submission has been sent'
     }
   },
   methods: {
@@ -51,7 +48,6 @@ var app = new Vue({
     },
     createTranslations () {
       let filter = '?limit=1000&select=data.label,data.' + this.languages.join(',data.')
-      console.log(filter)
       let url = this.project.concat('/', this.translationsPath, '/submission')
       return Formio.request(url + filter, 'get').then((items) => {
         for (let i = 0; i < items.length; i++) {
@@ -64,8 +60,7 @@ var app = new Vue({
           }
           
         }
-        this.messages.submissionSent = this.options.i18n[this.options.language].submissionSent || this.messages.submissionSent
-        this.messages.submissionError = this.options.i18n[this.options.language].submissionError || this.messages.submissionError
+        this.submitMessage = this.options.i18n[this.options.language].submitMessage || this.submitMessage
       })
       return this.options
     },
@@ -108,11 +103,8 @@ var app = new Vue({
     this.createTranslations().then((options) => {
       this.createForm().then((form) => {
         form.on('submit', (submission) => {
-          let msg = document.createElement('div');
-          msg.className = 'alert alert-success text-center';
-          msg.innerHTML = this.messages.submissionSent;
-          let root = document.getElementById('formio');
-          formio.innerHTML = msg.outerHTML;
+          let root = document.getElementById('formio')
+          formio.innerHTML = `<div class="submit-message">${this.submitMessage}</div>`
         })
         this.loading = false
         this.form = form
